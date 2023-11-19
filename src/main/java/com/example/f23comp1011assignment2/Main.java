@@ -14,7 +14,7 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("page-one-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Formula 1");
-        stage.getIcons().add(new Image(Main.class.getResourceAsStream("/images/icon.jpg")));
+        stage.getIcons().add(new Image(Main.class.getResourceAsStream("/images/icon.png")));
         stage.setScene(scene);
         stage.show();
     }
