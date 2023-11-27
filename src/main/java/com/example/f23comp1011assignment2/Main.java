@@ -9,21 +9,28 @@ import javafx.scene.text.Font;
 
 import java.io.IOException;
 
+// The main class that launches the JavaFX application
 public class Main extends Application {
 
+    // Entry point for the JavaFX application
     @Override
     public void start(Stage stage) throws IOException {
 
+        // Load a custom font for the application
         Font.loadFont(getClass().getResourceAsStream("/fonts/PixelifySans-Regular.ttf"), 12);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("page-one-view.fxml"));
+        // Load the main FXML file for the UI
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("driver-search-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Formula 1");
-        stage.getIcons().add(new Image(Main.class.getResourceAsStream("/images/icon.png")));
-        stage.setScene(scene);
-        stage.show();
+
+        // Set the stage properties
+        stage.setTitle("Formula 1"); // Set the title of the application
+        stage.getIcons().add(new Image(Main.class.getResourceAsStream("/images/icon.png"))); // Set the application icon
+        stage.setScene(scene); // Set the scene to display
+        stage.show(); // Display the stage
     }
 
+    // Main method to launch the JavaFX application
     public static void main(String[] args) {
         launch();
     }

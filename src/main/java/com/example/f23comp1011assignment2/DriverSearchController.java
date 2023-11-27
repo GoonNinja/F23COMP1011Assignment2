@@ -12,8 +12,9 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
-public class PageOneViewController {
+public class DriverSearchController {
 
+    //FXML annotations to inject components from FXML file
     @FXML
     private ListView<Driver> listView;
 
@@ -41,55 +42,64 @@ public class PageOneViewController {
     @FXML
     private Label headerLabel;
 
+    //Method triggered when the "Search" button is pressed
     @FXML
     void searchDriver(ActionEvent event) throws IOException, InterruptedException {
 
+        //Retrieve the driver name from the search text field
         String driverName = searchTextField.getText().trim();
+
+        //Call the Formula 1 API to get information about the driver
         ApiResponse apiResponse = APIUtility.callAPI(driverName);
 
-        if(apiResponse.getResponse() != null && !driverName.isEmpty()){
+        //Check if the API response contains data and the search text is not empty
+        if (apiResponse.getResponse() != null && !driverName.isEmpty()) {
+            //Show the titles VBox, clear the list view, add the API response data to the list view
             titlesVBox.setVisible(true);
             listView.getItems().clear();
             listView.getItems().addAll(apiResponse.getResponse());
+            headerLabel.setVisible(false);
+
+            //Update the results message label and hide the error message label
             resultsMsgLabel.setText("Showing " + listView.getItems().size() + " of " + apiResponse.getResults());
             msgLabel.setVisible(false);
-        }
-        else{
+        } else {
+            //Show the titles VBox, clear the list view, update the results message label, show the error message label
             titlesVBox.setVisible(true);
             listView.getItems().clear();
+            headerLabel.setVisible(true);
             resultsMsgLabel.setText("Showing " + listView.getItems().size() + " of " + apiResponse.getResults());
             msgLabel.setVisible(true);
             msgLabel.setText("Enter driver name and press search.");
         }
-
     }
 
-    @FXML void initialize(){
+    //Method called during the initialization of the controller
+    @FXML
+    void initialize() {
+        //Hide the selected VBox, titles VBox, and error message label
         selectedVBox.setVisible(false);
         titlesVBox.setVisible(false);
         msgLabel.setVisible(false);
 
+        //Listener for selection changes in the list view
         listView.getSelectionModel()
                 .selectedItemProperty()
-                .addListener((obs, oldValue, driverSelected)->{
-
-                    if(driverSelected != null) {
+                .addListener((obs, oldValue, driverSelected) -> {
+                    //Check if a driver is selected
+                    if (driverSelected != null) {
+                        //Show the selected VBox and set the driver's image
                         selectedVBox.setVisible(true);
-                        try{
+                        try {
                             driverImageView.setImage(new Image(driverSelected.getDriverImage()));
-                        }
-                        catch(IllegalArgumentException e){
+                        } catch (IllegalArgumentException e) {
+                            //Handle the case where the image is not found
                             driverImageView.setImage(new Image(Main.class.getResourceAsStream("/images/img.png")));
                         }
-                    }
-                    else {
+                    } else {
+                        //Hide the selected VBox if no driver is selected
                         selectedVBox.setVisible(false);
                     }
-
                 });
     }
-
-
-
-
 }

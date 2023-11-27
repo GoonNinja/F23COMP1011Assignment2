@@ -26,10 +26,29 @@ root{
 }
 
 #headerLabel{
-    -fx-font-size: 28px;
+    -fx-font-size: 36px;
 }
 
 #msgLabel{
     -fx-font-size: 30px;
 }
 
+#searchTextField{
+    -fx-background-radius: 5px;
+    -fx-font-size: 20px;
+    -fx-effect: dropshadow( gaussian , rgba(81, 81, 81, 0.88) , 15 , 0.0 , 3 , 0 );
+}
+
+.button{
+    -fx-background-radius: 15px;
+    -fx-font-size: 20px;
+    -fx-effect: dropshadow( gaussian , rgba(81, 81, 81, 0.88) , 15 , 0.0 , 3 , 0 );
+}
+
+#selectedVBox{
+    -fx-background-color: rgba(81, 81, 81, 0.88);
+    -fx-border-color: #000;
+    -fx-border-radius: 15px;
+    -fx-border-width: 3px;
+    -fx-background-radius: 15px;
+}

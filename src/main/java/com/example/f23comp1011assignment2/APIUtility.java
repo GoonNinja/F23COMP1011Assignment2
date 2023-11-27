@@ -8,17 +8,15 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-
 public class APIUtility {
 
-    //This method calls the Formula 1 API with a driver name passed in as an arguement
+    // This method calls the Formula 1 API with a driver name passed in as an argument
     public static ApiResponse callAPI(String driverName) throws IOException, InterruptedException {
 
-        //If we received "Lewis Hamilton", we need to translate that to be "Lewis%20Hamilton"
-       driverName = driverName.replaceAll(" ", "%20");
+        // If we received "Lewis Hamilton", we need to translate that to be "Lewis%20Hamilton"
+        driverName = driverName.replaceAll(" ", "%20");
 
-
-//        HttpClient client = HttpClient.newHttpClient();
+        // Build the HttpRequest to make a GET request to the Formula 1 API
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(URI.create("https://api-formula-1.p.rapidapi.com/drivers?search=" + driverName))
                 .header("X-RapidAPI-Key", "3022d24a06msh9e571101e8fa8f0p186114jsn7208f8743876")
@@ -26,12 +24,10 @@ public class APIUtility {
                 .method("GET", HttpRequest.BodyPublishers.noBody())
                 .build();
 
-//        HttpResponse<Path> httpResponse = client.send(httpRequest, HttpResponse.BodyHandlers
-//                                         .ofFile(Paths.get("drivers.json")));
-
-
+        // Send the GET request and receive the response as a string
         HttpResponse<String> httpResponse = HttpClient.newHttpClient().send(httpRequest, HttpResponse.BodyHandlers.ofString());
 
+        // Use Gson to deserialize the JSON response into an ApiResponse object
         Gson gson = new Gson();
         return gson.fromJson(httpResponse.body(), ApiResponse.class);
     }
