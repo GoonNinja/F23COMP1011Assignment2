@@ -39,6 +39,9 @@ public class PageOneViewController {
     private ImageView driverImageView;
 
     @FXML
+    private Label headerLabel;
+
+    @FXML
     void searchDriver(ActionEvent event) throws IOException, InterruptedException {
 
         String driverName = searchTextField.getText().trim();
