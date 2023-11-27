@@ -102,4 +102,11 @@ public class DriverSearchController {
                     }
                 });
     }
+
+    //When the details button is pressed it changes scenes to the details page
+    @FXML
+    void getDriverDetails(ActionEvent event) throws IOException {
+        Driver driverSelected = listView.getSelectionModel().getSelectedItem();
+        SceneChanger.changeScenes(event, "driver-details.fxml", driverSelected.getName());
+    }
 }
