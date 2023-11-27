@@ -10,12 +10,13 @@ public class Driver {
     private Number worldChampionships;
     @SerializedName("career_points")
     private String careerPoints;
+    @SerializedName("image")
+    private String driverImage;
     private String name;
     private String nationality;
     private String birthplace;
     private String birthdate;
     private Number podiums;
-    private String driverImage;
 
     public Number getGrandPrixEntered() {
         return grandPrixEntered;

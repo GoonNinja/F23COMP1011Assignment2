@@ -33,6 +33,7 @@
             </Button>
          </children>
       </HBox>
+      <Label fx:id="msgLabel" layoutX="449.0" layoutY="91.0" text="errorLabel" />
       <VBox fx:id="selectedVBox" alignment="CENTER" layoutX="625.0" layoutY="422.0" prefHeight="212.0" prefWidth="300.0">
          <children>
             <ImageView fx:id="driverImageView" fitHeight="164.0" fitWidth="290.0" pickOnBounds="true" preserveRatio="true" />
@@ -43,6 +44,5 @@
             </Button>
          </children>
       </VBox>
-      <Label fx:id="msgLabel" layoutX="36.0" layoutY="553.0" prefHeight="41.0" prefWidth="195.0" text="errorlabelchangelater" />
    </children>
 </AnchorPane>
