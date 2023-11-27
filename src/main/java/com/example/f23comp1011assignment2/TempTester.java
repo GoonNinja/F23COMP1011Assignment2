@@ -7,9 +7,7 @@ public class TempTester {
     public static void main(String[] args) throws IOException, InterruptedException {
 
         try{
-            APIUtility.callConstructorsApi();
-            APIUtility.callDriversApi();
-            APIUtility.callRacesApi();
+            APIUtility.callAPI("Max Verstappen");
 
         }
         catch (Exception e){
