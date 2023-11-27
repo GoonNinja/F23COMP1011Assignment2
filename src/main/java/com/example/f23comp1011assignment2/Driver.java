@@ -52,4 +52,8 @@ public class Driver {
     public String getDriverImage() {
         return driverImage;
     }
+
+    public String toString(){
+        return String.format("%s", name);
+    }
 }

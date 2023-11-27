@@ -14,7 +14,7 @@ import java.io.IOException;
 public class PageOneViewController {
 
     @FXML
-    private ListView<?> listView;
+    private ListView<Driver> listView;
 
     @FXML
     private Label msgLabel;
@@ -41,7 +41,10 @@ public class PageOneViewController {
     void searchDriver(ActionEvent event) throws IOException, InterruptedException {
 
         String driverName = searchTextField.getText().trim();
-        APIUtility.callAPI(driverName);
+        ApiResponse apiResponse = APIUtility.callAPI(driverName);
+        titlesVBox.setVisible(true);
+        listView.getItems().clear();
+        listView.getItems().addAll(apiResponse.getResponse());
     }
 
     @FXML void initialize(){
@@ -49,6 +52,7 @@ public class PageOneViewController {
         titlesVBox.setVisible(false);
         msgLabel.setVisible(false);
     }
+
 
 
 
