@@ -20,7 +20,7 @@ public class Main extends Application {
         Font.loadFont(getClass().getResourceAsStream("/fonts/PixelifySans-Regular.ttf"), 12);
 
         // Load the main FXML file for the UI
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("driver-details.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("driver-search-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
 
         // Set the stage properties

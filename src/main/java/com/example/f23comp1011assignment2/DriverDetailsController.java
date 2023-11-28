@@ -57,13 +57,13 @@ public class DriverDetailsController implements DriverLoader {
             System.out.println(driver);
 
             // Populate UI labels with driver details
-            nameLabel.setText(driver.getResponse().get(0).getName());
-            birthplaceLabel.setText(driver.getResponse().get(0).getBirthplace());
-            careerPointsLabel.setText(driver.getResponse().get(0).getCareerPoints());
-            grandPrixLabel.setText(driver.getResponse().get(0).getGrandPrixEntered().toString());
-            nationalityLabel.setText(driver.getResponse().get(0).getNationality());
-            podiumsLabel.setText(driver.getResponse().get(0).getPodiums().toString());
-            worldChampionshipsLabel.setText(driver.getResponse().get(0).getWorldChampionships().toString());
+            nameLabel.setText(getTextOrDefault(driver.getResponse().get(0).getName()));
+            birthplaceLabel.setText(getTextOrDefault(driver.getResponse().get(0).getBirthplace()));
+            careerPointsLabel.setText(getTextOrDefault(driver.getResponse().get(0).getCareerPoints()));
+            grandPrixLabel.setText(getTextOrDefault(driver.getResponse().get(0).getGrandPrixEntered()));
+            nationalityLabel.setText(getTextOrDefault(driver.getResponse().get(0).getNationality()));
+            podiumsLabel.setText(getTextOrDefault(driver.getResponse().get(0).getPodiums()));
+            worldChampionshipsLabel.setText(getTextOrDefault(driver.getResponse().get(0).getWorldChampionships()));
 
             // Set driver image or default image if it's null
             if (driver.getResponse().get(0).getImage() != null) {
@@ -78,5 +78,10 @@ public class DriverDetailsController implements DriverLoader {
             // Handle interrupted exception by throwing a runtime exception
             throw new RuntimeException(e);
         }
+    }
+
+    // Helper method to return the value if not null, or "N/A" otherwise
+    private String getTextOrDefault(Object value) {
+        return value != null ? value.toString() : "N/A";
     }
 }
