@@ -12,7 +12,7 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
-public class DriverSearchController {
+public class DriverSearchController{
 
     //FXML annotations to inject components from FXML file
     @FXML
@@ -105,8 +105,8 @@ public class DriverSearchController {
 
     //When the details button is pressed it changes scenes to the details page
     @FXML
-    void getDriverDetails(ActionEvent event) throws IOException {
+    void getDriverDetails(ActionEvent event) throws IOException, InterruptedException {
         Driver driverSelected = listView.getSelectionModel().getSelectedItem();
-        SceneChanger.changeScenes(event, "driver-details.fxml", driverSelected.getName());
+        SceneChanger.changeScenes(event, "driver-details.fxml", driverSelected.getDriverId());
     }
 }

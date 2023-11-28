@@ -21,14 +21,14 @@ public class SceneChanger {
         stage.show(); // Display the stage
     }
 
-    public static void changeScenes(ActionEvent event, String fxmlFileName, String driverName) throws IOException {
+    public static void changeScenes(ActionEvent event, String fxmlFileName, Number driverId) throws IOException, InterruptedException {
         // Load the main FXML file for the UI
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource(fxmlFileName));
         Scene scene = new Scene(fxmlLoader.load());
 
         //get the controller for the destination view and call the "loadDriver()" method
         DriverLoader controller = fxmlLoader.getController();
-        controller.loadDriver(driverName);
+        controller.loadDriver(driverId);
 
         //Get the stage from the ActionEvent
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
