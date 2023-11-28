@@ -32,8 +32,8 @@ public class APIUtility {
         return gson.fromJson(httpResponse.body(), ApiResponse.class);
     }
 
+    // This method retrieves driver details based on the driver ID
     public static DriverDetailsResponse getDriverDetails(Number driverId) throws IOException, InterruptedException {
-
 
         // Build the HttpRequest to make a GET request to the Formula 1 API
         HttpRequest httpRequest = HttpRequest.newBuilder()
@@ -42,10 +42,11 @@ public class APIUtility {
                 .header("X-RapidAPI-Host", "api-formula-1.p.rapidapi.com")
                 .method("GET", HttpRequest.BodyPublishers.noBody())
                 .build();
-       // Send the GET request and receive the response as a string
+
+        // Send the GET request and receive the response as a string
         HttpResponse<String> httpResponse = HttpClient.newHttpClient().send(httpRequest, HttpResponse.BodyHandlers.ofString());
 
-        // Use Gson to deserialize the JSON response into a DriverDetails object
+        // Use Gson to deserialize the JSON response into a DriverDetailsResponse object
         Gson gson = new Gson();
         return gson.fromJson(httpResponse.body(), DriverDetailsResponse.class);
     }

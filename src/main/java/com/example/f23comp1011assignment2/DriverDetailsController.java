@@ -9,7 +9,8 @@ import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
 
-public class DriverDetailsController implements DriverLoader{
+// Controller class for displaying details of a Formula 1 driver
+public class DriverDetailsController implements DriverLoader {
 
     @FXML
     private Label birthplaceLabel;
@@ -43,14 +44,19 @@ public class DriverDetailsController implements DriverLoader{
 
     @FXML
     void backToPrevious(ActionEvent event) throws IOException {
+        // Change the scene to the driver search view
         SceneChanger.changeScenes(event, "driver-search-view.fxml");
     }
 
+    // Method to load driver details based on the provided driver ID
     public void loadDriver(Number driverId) throws IOException, InterruptedException {
 
-        try{
+        try {
+            // Get driver details response from the API
             DriverDetailsResponse driver = APIUtility.getDriverDetails(driverId);
             System.out.println(driver);
+
+            // Populate UI labels with driver details
             nameLabel.setText(driver.getResponse().get(0).getName());
             birthplaceLabel.setText(driver.getResponse().get(0).getBirthplace());
             careerPointsLabel.setText(driver.getResponse().get(0).getCareerPoints());
@@ -58,18 +64,19 @@ public class DriverDetailsController implements DriverLoader{
             nationalityLabel.setText(driver.getResponse().get(0).getNationality());
             podiumsLabel.setText(driver.getResponse().get(0).getPodiums().toString());
             worldChampionshipsLabel.setText(driver.getResponse().get(0).getWorldChampionships().toString());
-            // Set image or default if it's null
+
+            // Set driver image or default image if it's null
             if (driver.getResponse().get(0).getImage() != null) {
                 imageView.setImage(new Image(driver.getResponse().get(0).getImage()));
             } else {
                 imageView.setImage(new Image(Main.class.getResourceAsStream("../images/img.png")));
             }
-        }catch(IOException e){
+        } catch (IOException e) {
+            // Handle IO exception by throwing a runtime exception
             throw new RuntimeException(e);
-        }catch (InterruptedException e){
+        } catch (InterruptedException e) {
+            // Handle interrupted exception by throwing a runtime exception
             throw new RuntimeException(e);
         }
-
     }
-
 }
